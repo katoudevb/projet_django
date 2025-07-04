@@ -1,0 +1,71 @@
+Rapport de travail
+1. Étude et correctifs du code fourni :
+-Le code initial présente plusieurs classes représentant des médias (livre, dvd, cd, jeuDePlateau)  qui ne sont pas hériter
+
+-Les classes n’ont pas de méthodes d'initialisation (__init__), ce qui empêche une bonne instanciation des objets avec des valeurs propres.
+
+- Manque de structuration : le code contient des définitions globales  "menu()"" sans indentation correcte ni gestion des appels.
+
+_ Les états comme disponible ou bloque sont définis comme chaînes vides, ce qui rend leur utilisation peu fiable.
+
+Correctifs appliqués :
+- Ajout de méthodes __init__ pour chaque classe
+
+- Correction de la syntaxe Python (indentation, appels de fonctions).
+
+- Passage des attributs en variables d’instance.
+
+- Ajout d’une classe Emprunt pour centraliser la gestion des emprunts.
+
+- Mise en place d’une gestion basique des disponibilités et des emprunteurs.
+
+
+2. Mise en place des fonctionnalités demandées
+
+Gestion des médias : classes séparées pour chaque type de média avec leurs caractéristiques propres.
+
+Gestion des emprunts : liaison entre Emprunteur et médias via une classe Emprunt
+
+Validation de disponibilité : mise en place d’attributs disponible et bloque pour gérer les états des objets.
+
+
+3. Stratégie de tests
+Tests unitaires : création d’instances des classes médias et emprunteurs pour vérifier l'initialisation correcte des attributs.
+
+Tests fonctionnels : simulation d’emprunts pour valider que les médias passent bien de l’état disponible à emprunté, et que les emprunteurs bloqués ne peuvent pas emprunter.
+
+Tests d’interface : vérification des menus pour s’assurer que les fonctions affichent bien les messages attendus et que les choix utilisateurs sont captés correctement.
+
+Tests de robustesse : manipulation de cas limites, comme emprunter un média déjà emprunté, ou tenter d’emprunter avec un emprunteur bloqué.
+
+
+Instructions pour exécuter le programme(sans prérequis) :
+
+
+- Installation de Python (version recommandée 3.8+)
+
+Clonage du dépôt du projet
+Copier les fichiers sources sur la machine cible, par exemple via Git :
+
+git clone <url_du_projet>
+cd <nom_du_projet>
+Création et activation d’un environnement virtuel
+Pour isoler les dépendances du projet :
+
+
+python -m venv venv
+source venv/bin/activate  # macOS / Linux
+venv\Scripts\activate     # Windows
+
+
+Créer la base de données SQLite et ses tables :
+
+python manage.py migrate
+
+Lancement du serveur de développement Django
+
+python manage.py runserver
+Accès à l’application
+Ouvrir un navigateur et se rendre à l’URL :
+
+http://127.0.0.1:8000/

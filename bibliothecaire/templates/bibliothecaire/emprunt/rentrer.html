@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rentrer un emprunt</title>
+</head>
+<body>
+{% extends "bibliothecaire/base.html" %}
+{% block content %}
+<h1>Rentrer un emprunt</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Valider le retour</button>
+</form>
+{% endblock %}
+
+</body>
+</html>

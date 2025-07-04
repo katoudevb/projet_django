@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suppression des Membres</title>
+</head>
+<body>
+
+{% extends "bibliothecaire/base.html" %}
+{% block content %}
+<h1>Confirmer la suppression</h1>
+<p>Voulez-vous vraiment supprimer le membre : <strong>{{ membre.prenom }} {{ membre.nom }}</strong> ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+    <a href="{% url 'bibliothecaire:liste_membres' %}">Annuler</a>
+</form>
+{% endblock %}
+
+</body>
+</html>

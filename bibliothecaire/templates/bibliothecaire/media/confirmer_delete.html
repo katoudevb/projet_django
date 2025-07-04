@@ -1,0 +1,8 @@
+<h1>Confirmer la suppression</h1>
+<p>Voulez-vous vraiment supprimer : <strong>{{ media.name }}</strong> ?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Oui, supprimer</button>
+  <a href="{% url 'bibliothecaire:liste_media' %}">Annuler</a>
+</form>

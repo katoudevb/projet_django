@@ -1,0 +1,31 @@
+{% extends 'bibliothecaire/base.html' %}
+
+{% block content %}
+<h2>Liste des emprunts</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Membre</th>
+            <th>Média</th>
+            <th>Date d'emprunt</th>
+            <th>Date de retour prévue</th>
+            <th>Date de retour</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emprunt in emprunts %}
+        <tr>
+            <td>{{ emprunt.membre }}</td>
+            <td>{{ emprunt.media }}</td>
+            <td>{{ emprunt.date_emprunt }}</td>
+            <td>{{ emprunt.date_retour_prevue }}</td>
+            <td>{{ emprunt.date_retour|default:"Non retourné" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Aucun emprunt en cours.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

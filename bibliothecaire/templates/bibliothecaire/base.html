@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bibliothèque</title>
+    <style>
+        /* Minimal CSS pour lisibilité */
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background-color: #eee; }
+        .errors { color: red; }
+        a { text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+<nav>
+  <a href="{% url 'bibliothecaire:liste_membres' %}">Membres</a> |
+  <a href="{% url 'bibliothecaire:liste_media' %}">Médias</a> |
+  <a href="{% url 'bibliothecaire:creer_emprunt' %}">Créer un emprunt</a> |
+    <a href="{% url 'bibliothecaire:ajouter_media' %}">Créer un média</a> |
+
+</nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

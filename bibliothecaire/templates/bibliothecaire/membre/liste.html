@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Membres</title>
+</head>
+
+<body>
+{% extends "bibliothecaire/base.html" %}
+{% block content %}
+<h1>Liste des membres</h1>
+<a href="{% url 'bibliothecaire:creer_membre' %}">Ajouter un nouveau membre</a>
+<table>
+    <thead>
+        <tr>
+            <th>Prénom</th><th>Nom</th><th>Email</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for membre in membres %}
+        <tr>
+            <td>{{ membre.prenom }}</td>
+            <td>{{ membre.nom }}</td>
+            <td>{{ membre.email }}</td>
+            <td>
+                <a href="{% url 'bibliothecaire:modifier_membre' membre.id %}">Modifier</a> |
+                <a href="{% url 'bibliothecaire:supprimer_membre' membre.id %}">Supprimer</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">Aucun membre trouvé.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+</body>
+</html>

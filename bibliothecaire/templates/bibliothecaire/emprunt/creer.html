@@ -1,0 +1,48 @@
+{% extends "bibliothecaire/base.html" %}
+
+{% block content %}
+<h1>Créer un emprunt</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if form.non_field_errors %}
+        <ul class="errors">
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <button type="submit">Emprunter</button>
+</form>
+
+<!-- jQuery requis pour AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#id_type_media').change(function() {
+            const selectedType = $(this).val();
+
+            $.ajax({
+                url: "{% url 'bibliothecaire:medias_disponibles' %}",
+                data: {
+                    type_media: selectedType
+                },
+                dataType: 'json',
+                success: function(data) {
+                    const mediaSelect = $('#id_media');
+                    mediaSelect.empty();  // vide les options
+                    // ajoute une option vide par défaut
+                    mediaSelect.append($('<option></option>').val('').text('--- Sélectionner un média ---'));
+                    data.forEach(function(item) {
+                        mediaSelect.append($('<option></option>').val(item.id).text(item.name));
+                    });
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

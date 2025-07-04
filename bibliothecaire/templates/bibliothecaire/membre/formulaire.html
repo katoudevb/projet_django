@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire des membres</title>
+</head>
+
+<body>
+{% extends "bibliothecaire/base.html" %}
+{% block content %}
+<h1>{% if form.instance.pk %}Modifier un membre{% else %}Créer un membre{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+{% endblock %}
+</body>
+</html>
